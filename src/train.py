@@ -61,8 +61,10 @@ def main(args):
     updater = training.StandardUpdater(train_it, optimizer, device=args.gpu)
     print("---set updater----------")
 
-    val_interval = train_data_length//args.training_params.batch_size, 'iteration'
-    log_interval = train_data_length//args.training_params.batch_size, 'iteration'
+
+    val_interval = args.training_params.report_epoch, 'epoch'
+    val_snapshot_interval = args.training_params.snapshot_epoch, 'epoch'
+    log_interval = args.training_params.report_epoch, 'epoch'
 
     trainer = training.Trainer( \
         updater, (args.training_params.epoch, 'epoch'), out=args.output_path)
@@ -70,9 +72,10 @@ def main(args):
         extensions.Evaluator(val_it, model_for_eval, device=args.gpu), \
         trigger=val_interval)
     trainer.extend(extensions.dump_graph('main/loss'))
-    trainer.extend(extensions.snapshot(), trigger=val_interval)
+    trainer.extend(extensions.snapshot(), trigger=val_snapshot_interval)
     trainer.extend(extensions.snapshot_object( \
-        model, 'model_iter_{.updater.iteration}'), trigger=val_interval)
+        model, 'model_iter_{.updater.iteration}'), \
+        trigger=val_snapshot_interval)
     trainer.extend(extensions.ExponentialShift( \
         'lr', args.training_params.decay_factor), \
         trigger=(args.training_params.decay_epoch, 'epoch'))

@@ -11,7 +11,8 @@ data_root_path = './data' if platform.system()==local_os_name else '/data'
 
 # mult_dir's key is module name
 mult_dir = {'n_i_n': 32,
-            'squeeze_net': 16}
+            'squeeze_net': 16,
+            'cifar10': 4}
 
 augmentation_params = {
                        'scale':[0.5, 0.75, 1.25],
@@ -43,9 +44,9 @@ model_module = net_dir[use_net]
 experiment_criteria = ''
 initial_model = os.path.join(data_root_path+'/results'+'/'+use_net+experiment_criteria, 'model_iter_xxx')
 resume = os.path.join(data_root_path+'/results'+'/'+use_net+experiment_criteria, 'snapshot_iter_xxx')
-aug_flags = {'do_scale':False, 'do_flip':True,
+aug_flags = {'do_scale':False, 'do_flip':False,
              'change_britghtness':False, 'change_contrast':False,
-             'do_shift':False, 'do_rotate':True}
+             'do_shift':False, 'do_rotate':False}
 
 
 trainig_params = { \
@@ -55,6 +56,8 @@ trainig_params = { \
         'epoch': 100,
         'decay_factor': 0.90,  # as lr time decay
         'decay_epoch': 50,
+        'snapshot_epoch': 3,
+        'report_epoch': 1,
     }
 
 

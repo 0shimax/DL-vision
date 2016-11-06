@@ -170,8 +170,7 @@ if __name__=='__main__':
     mini_batch_loader = DatasetPreprocessor(args)
 
     # patch config
-    # args.size = 8*5  # size>=40, for spacial pyramid pooling
-    args.size = 8*5  # size>=40, for pyramid spacial pooling
+    args.size = 8*4  # size>=40, for pyramid spacial pooling
     args.stride = 3
     args.converse_gray = False
     args.in_ch = 3
