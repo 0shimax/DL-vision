@@ -85,8 +85,7 @@ class DatasetPreProcessor(chainer.dataset.DatasetMixin):
         # initialize batch counter
         self.__init_batch_counter()
 
-        batch_inputs = image.astype(np.float32), np.array(label, dtype=np.int32)
-        return batch_inputs
+        return image.astype(np.float32), np.array(label, dtype=np.int32)
 
     def load_pairs(self):
         image_label_pairs = []

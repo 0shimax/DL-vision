@@ -42,7 +42,7 @@ output_path = os.path.join(data_root_path+'/results', use_net)
 im_norm_type = image_normalize_types_dir[normalize_type]
 model_module = net_dir[use_net]
 experiment_criteria = ''
-initial_model = os.path.join(data_root_path+'/results'+'/'+use_net+experiment_criteria, 'model_iter_xxx')
+initial_model = os.path.join(data_root_path+'/results'+'/'+use_net+experiment_criteria, 'model_iter_3868')
 resume = os.path.join(data_root_path+'/results'+'/'+use_net+experiment_criteria, 'snapshot_iter_xxx')
 aug_flags = {'do_scale':False, 'do_flip':False,
              'change_britghtness':False, 'change_contrast':False,
@@ -93,7 +93,7 @@ test_args = \
         'gpu': gpu,
         'n_class': n_class,
         'in_ch': 1 if converse_gray else 3,
-        'image_pointer_path': data_root_path+'/cifar-10-batches-py/test_batch',
+        'image_pointer_path': data_root_path+'/cifar-10-batches-py/data_batch_1',  #test_batch
         'output_path': output_path,
         'initial_model': initial_model,
         'im_norm_type': im_norm_type,
