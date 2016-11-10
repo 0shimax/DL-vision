@@ -7,9 +7,9 @@ class Cifar10(chainer.Chain):
 
     def __init__(self, n_class, in_ch):
         super().__init__(
-            conv1=L.Convolution2D(in_ch, 32, 5, stride=1, pad=2),
-            conv2=L.Convolution2D(32, 32, 5, stride=1, pad=2),
-            conv3=L.Convolution2D(32, 64, 5, stride=1, pad=2),
+            conv1=L.Convolution2D(in_ch, 32, 5, pad=2),
+            conv2=L.Convolution2D(32, 32, 5, pad=2),
+            conv3=L.Convolution2D(32, 64, 5, pad=2),
             fc4=F.Linear(1344, 4096),
             fc5=F.Linear(4096, n_class),
         )
@@ -30,5 +30,5 @@ class Cifar10(chainer.Chain):
         self.loss = F.softmax_cross_entropy(h, t)
         self.accuracy = F.accuracy(h, t)
         chainer.report({'loss': self.loss, 'accuracy': self.accuracy}, self)
-        
+
         return self.loss

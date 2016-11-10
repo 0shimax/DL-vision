@@ -34,7 +34,7 @@ image_normalize_types_dir = {'ZCA': {'method':'zca_whitening', 'opts':{'eps':1e-
 debug_mode = False
 converse_gray = False
 gpu = -1 if platform.system()==local_os_name else 1
-use_net = 'squeeze_net'
+use_net = 'cifar10'
 n_class = 10  # number of class is 2, if you use ne_class classifier.
 crop_size = 224
 normalize_type = 'LCN'
