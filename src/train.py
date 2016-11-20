@@ -25,7 +25,6 @@ def prepare_optimizer(model, args):
     optimizer = chainer.optimizers.RMSpropGraves(args.training_params.lr)
     optimizer.setup(model)
     optimizer.add_hook(chainer.optimizer.WeightDecay(args.training_params.weight_decay))
-    optimizer.add_hook(chainer.optimizer.Lasso(args.training_params.weight_decay))
     return optimizer
 
 
