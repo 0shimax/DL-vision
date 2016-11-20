@@ -18,7 +18,7 @@ from math import ceil, floor
 
 class AttentionVisualizer(object):
     """
-    see OBJECT DETECTORS EMERGE IN DEEP SCENE CNNs, Zhou+, '15
+    see OBJECT DETECTORS EMERGE IN DEEP SCENE CNNs, Zhou+, '14
     https://arxiv.org/abs/1412.6856
     """
     def __init__(self, args):
@@ -44,12 +44,6 @@ class AttentionVisualizer(object):
         return prob, target_class,
 
     def crop_patches(self, image):
-        '''
-        occluded images is so time consuming.
-        create image patches instead of occluded images.
-        thus, score need to be reversed.
-        do not forget.
-        '''
         n_img, ch, h, w = image.shape
 
         num_occluded_img = \
@@ -89,7 +83,7 @@ class AttentionVisualizer(object):
         # attention score
         diff = patches_prob - prob
         if self.args.gpu>=0:
-            threshold = np.percentile(xp.asnumpy(diff), self.args.percentile)
+            threshold = np.percentile(self.xp.asnumpy(diff), self.args.percentile)
         else:
             threshold = self.xp.percentile(diff, self.args.percentile)
 
@@ -104,14 +98,6 @@ class AttentionVisualizer(object):
         return mask
 
     def compute_attention_mask(self, image, gt):
-        '''
-        create mask without attention.
-
-        image     : (3, height, width)
-        gt        : integer
-        percentile: degree of interest
-        '''
-
         ch, h, w = image.shape
         image = image.reshape(1, ch, h, w).astype(np.float32)
 
@@ -134,10 +120,6 @@ class AttentionVisualizer(object):
         return mask, target_class
 
     def visualize_attention(self, raw_image, preprocessed_image, gt):
-        '''
-        gt        : integer
-        percentile: degree of interest
-        '''
         h, w, _ = raw_image.shape
 
         mask, target_class = \
