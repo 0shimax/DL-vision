@@ -9,7 +9,6 @@ class ImportantSerialIterator(iterator.Iterator):
         self._repeat = repeat
         if shuffle:
             self._order = numpy.random.choice(range(len(dataset)), len(dataset), replace=repeat, p=p)
-            # self._order = numpy.random.permutation(len(dataset))
         else:
             self._order = None
 

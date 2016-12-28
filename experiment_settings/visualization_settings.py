@@ -5,6 +5,7 @@ import platform
 import inflection
 
 
+#
 # immortal params
 local_os_name = 'Darwin'
 data_root_path = './data' if platform.system()==local_os_name else '/data'

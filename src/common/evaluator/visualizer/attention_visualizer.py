@@ -18,7 +18,7 @@ from math import ceil, floor
 
 class AttentionVisualizer(object):
     """
-    see OBJECT DETECTORS EMERGE IN DEEP SCENE CNNs, Zhou+, '14
+    see OBJECT DETECTORS EMERGE IN DEEP SCENE CNNs,  Zhou+, '14
     https://arxiv.org/abs/1412.6856
     """
     def __init__(self, args):

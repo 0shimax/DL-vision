@@ -30,7 +30,7 @@ class ImageNormalizer(object):
 
         zca_matrix = U.dot(np.diag(1.0/np.sqrt(np.diag(S) + 1))).dot(U.T) #ZCA Whitening matrix
 
-        return fast_dot(zca_matrix, X).reshape(image.shape)   #Data whitening
+        return fast_dot(zca_matrix, X).reshape(image.shape)  #Data whitening
         """
         image = self.local_contrast_normalization(image)
         N = 1

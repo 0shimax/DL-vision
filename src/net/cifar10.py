@@ -17,11 +17,13 @@ class Cifar10(chainer.Chain):
         self.n_class = n_class
 
     def __call__(self, x, t):
-        x.volatile = not self.train
+        x.volatile = True
 
         h = F.max_pooling_2d(F.elu(self.conv1(x)), 3, stride=2)
         h = F.max_pooling_2d(F.elu(self.conv2(h)), 3, stride=2)
         h = F.elu(self.conv3(h))
+
+        h.volatile = False
         h = F.spatial_pyramid_pooling_2d(h, 3, F.MaxPooling2D)
         h = F.dropout(F.elu(self.fc4(h)), ratio=0.5, train=self.train)
         h = self.fc5(h)

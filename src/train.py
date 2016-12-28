@@ -5,7 +5,7 @@ sys.path.append('./src/common/model_preparator')
 sys.path.append('./src/net')
 sys.path.append('./experiment_settings')
 from mini_batch_loader import DatasetPreProcessor
-from visualization import get_args
+from visualization_settings import get_args
 from model_loader import prepare_model
 
 import chainer
@@ -33,7 +33,7 @@ def prepare_dataset():
     # load dataset
     train_mini_batch_loader = DatasetPreProcessor(train_args)
     test_mini_batch_loader = DatasetPreProcessor(get_args('test'))
-    print("---set mini_batch----------")
+    print("----set mini_batch----------")
     train_it = chainer.iterators.SerialIterator( \
                             train_mini_batch_loader, \
                             train_args.training_params.batch_size, \
