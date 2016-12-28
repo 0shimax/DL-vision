@@ -10,7 +10,7 @@ from image_normalizer import ImageNormalizer
 
 class DatasetPreProcessor(chainer.dataset.DatasetMixin):
     def __init__(self, args):
-        """args type is EasyDict class 
+        """args type is EasyDict class
         """
         self.args = args
         self.gray = args.converse_gray
