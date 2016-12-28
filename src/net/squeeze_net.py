@@ -21,6 +21,7 @@ class Fire(chainer.Chain):
 
 
 class SqueezeNet(chainer.Chain):
+    
     def __init__(self, n_class, in_ch):
         super().__init__(
             conv1=L.Convolution2D(in_ch, 96, 7, stride=2, pad=3),
